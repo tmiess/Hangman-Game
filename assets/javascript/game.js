@@ -58,20 +58,24 @@ document.onkeyup = function(event) {
     }
 
     else if (newWord.indexOf(guess) === -1) {
-        lettersUsed = lettersUsed + guess;
+        lettersUsed = lettersUsed + " " + guess;
         guessesLeft--;
     }
 
     else {
         for (var j = 0; j < length.empty; j++) {
+            if (newWord[j] === guess) {
+                empty[j] = guess;
+                console.log(empty[j]);
+            }
             empty[j] = guess;
             console.log(empty[j]);
-        } {
-            // if (newWord.includes(guess))
-            //    empty.indexOf(guess) = guess;
         }
 
-        lettersUsed = lettersUsed + guess;
+        // if (newWord.includes(guess))
+        //    empty.indexOf(guess) = guess; ???
+
+        lettersUsed = lettersUsed + " " + guess;
         return empty;
     }
 

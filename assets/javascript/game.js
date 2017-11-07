@@ -24,30 +24,6 @@ function reset() {
         empty = empty + "-";
     }
 
-    getIndexes: function(letter) {
-            var i;
-            for (i = 0; i < this.currentWord.length; i++) {
-                if (this.currentWord[i] === letter)
-                    this.indexes.push(i);
-            }
-        },
-
-        replace: function(letter) {
-            //take the indexes array (contains a list of the indexes with the letter guessed) and replace the emptyWord array with that letter for each index
-            var j;
-            for (j = 0; j < this.indexes.length; j++) {
-                this.emptyWord[this.indexes[j]] === letter;
-            }
-        },
-
-        checkLetter: function(letter) {
-            if (this.currentWord.indexOf(letter) == -1) {
-                this.guessesLeft--;
-            }
-            else {
-                this.getIndexes(letter);
-            }
-        },
 }
 
 document.getElementById("game").innerHTML = startGame();

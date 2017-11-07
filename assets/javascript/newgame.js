@@ -9,56 +9,59 @@ var hang = {
     losses: 0,
 
     createWord: function() {
-        this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
-        this.currentWord = String(this.currentWord);
-        for (var i = 0; i < this.currentWord.length; i++) {
-            this.emptyWord[i] = "_";
+        hang.currentWord = hang.wordList[Math.floor(Math.random() * hang.wordList.length)];
+        //hang.currentWord = String(hang.currentWord);
+        for (var i = 0; i < hang.currentWord.length; i++) {
+            hang.emptyWord[i] = "_";
         }
 
-        this.emptyWord = this.emptyWord.join(" ");
-        return this.emptyWord;
+        //hang.emptyWord = hang.emptyWord.join(" ");
+        console.log(hang.emptyWord);
+        return hang.emptyWord;
     },
 
     getIndexes: function(guess) {
         var i;
-        for (i = 0; i < this.currentWord.length; i++) {
-            if (this.currentWord[i] === guess)
-                this.indexes.push(i);
+        for (i = 0; i < hang.currentWord.length; i++) {
+            if (hang.currentWord[i] === guess)
+                hang.indexes.push(i);
         }
-        this.replace(guess);
+        console.log(hang.indexes);
+        hang.replace(guess);
     },
 
     replace: function(guess) {
         //take the indexes array (contains a list of the indexes with the letter guessed) and replace the emptyWord array with that letter for each index
         var j;
-        for (j = 0; j < this.indexes.length; j++) {
-            this.emptyWord[this.indexes[j]] = guess;
+        for (j = 0; j < hang.indexes.length; j++) {
+            hang.emptyWord[hang.indexes[j]] = guess;
         }
-        return this.emptyWord;
+        console.log(hang.emptyWord);
+        hang.indexes = [];
     },
 
     checkLetter: function(guess) {
-        if (this.lettersUsed.includes(guess)) {
+        if (hang.lettersUsed.includes(guess)) {
             alert("You already guessed " + guess + "!");
         }
 
-        else if (this.currentWord.indexOf(guess) == -1) {
-            this.lettersUsed = this.lettersUsed + " " + guess;
-            this.guessesLeft--;
+        else if (hang.currentWord.indexOf(guess) == -1) {
+            hang.lettersUsed = hang.lettersUsed + " " + guess;
+            hang.guessesLeft--;
         }
 
         else {
-            this.lettersUsed = this.lettersUsed + " " + guess;
-            this.getIndexes(guess);
+            hang.lettersUsed = hang.lettersUsed + " " + guess;
+            hang.getIndexes(guess);
         }
     },
 
     reset: function() {
-        this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
-        this.lettersUsed = "";
-        this.emptyWord = [];
-        this.guessesLeft = 8;
-        this.createWord();
+        hang.currentWord = hang.wordList[Math.floor(Math.random() * hang.wordList.length)];
+        hang.lettersUsed = "";
+        hang.emptyWord = [];
+        hang.guessesLeft = 8;
+        hang.createWord();
 
     }
 };
@@ -77,7 +80,7 @@ document.onkeyup = function(event) {
         hang.reset();
     }
 
-    else if (hang.emptyWord === hang.currentWord) {
+    else if (hang.emptyWord == hang.currentWord) {
         alert("Great job! You win!");
         hang.wins++;
         hang.reset();

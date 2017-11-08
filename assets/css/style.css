@@ -1,42 +1,46 @@
 body {
-    background-color: #1D4289;
+    background-image: url("../images/creepy.jpg");
 }
 
 .container {
-    background-color: #1D4289;
-    margin: auto;
+    background-image: url("../images/woodGrain.jpg");
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
     max-width: 90%;
+    min-height: 750px;
 }
 
 #title {
     background-color: white;
-    padding: 5px;
-    margin: 5px;
+    padding: 15px;
+    margin: 15px;
     text-align: center;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'IM Fell English SC', serif;
     color: #C80F2E;
-    border-radius: 25px;
+    border-radius: 5px;
 }
 
 #wordDisplay {
     padding: 5px;
     margin: 5px;
     text-align: center;
-    font-family: 'Raleway', sans-serif;
-    background-color: #C80F2E;
+    font-family: 'IM Fell English SC', serif;
+    background-color: brown;
     color: black;
     font-style: italic;
     font-size: xx-large;
-    border-radius: 50px;
+    border-radius: 5px;
 }
 
 #game {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'IM Fell English SC', serif;
     padding: 15px;
     margin: 5px;
     background-color: white;
     color: #C80F2E;
     text-align: center;
-    border-radius: 50px;
+    border-radius: 5px;
+    font-size: x-large;
 }

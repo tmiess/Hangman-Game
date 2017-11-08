@@ -1,6 +1,6 @@
 var hang = {
     alphabet: "abcdefghijklmnopqrstuvwxyz",
-    wordList: ["one", "two", "three", "four"],
+    wordList: ["hornet", "heat", "magic", "hawks", "wizard", "six", "net", "knickerbocker", "celtic", "piston", "cavalier", "pacer", "grizzly", "pelican", "bull", "lake", "clipper", "king", "blazer", "thunder", "sonic", "wolves", "jazz", "sun", "spur", "rocket", "maverick", "warrior", "bullet", "raptor", "nugget", "buck"],
     guessesLeft: 8,
     currentWord: [],
     emptyWord: [],
@@ -97,7 +97,7 @@ document.onkeyup = function(event) {
     }
 
     else if (String(hang.emptyWord.join("")) === hang.currentWord) {
-        alert("Great job! The letter was " + hang.currentWord + "!");
+        alert("Great job! The word was " + hang.currentWord + "!");
         hang.wins++;
         hang.reset();
     }

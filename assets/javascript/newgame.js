@@ -12,35 +12,16 @@ var hang = {
         hang.currentWord = hang.wordList[Math.floor(Math.random() * hang.wordList.length)];
         //hang.currentWord = String(hang.currentWord);
         for (var i = 0; i < hang.currentWord.length; i++) {
-            hang.emptyWord[i] = "_";
+            hang.emptyWord[i] = "-";
         }
-
-        //hang.emptyWord = hang.emptyWord.join(" ");
-        console.log(hang.emptyWord);
-        return hang.emptyWord;
-    },
-
-    getIndexes: function(guess) {
-        var i;
-        for (i = 0; i < hang.currentWord.length; i++) {
-            if (hang.currentWord[i] === guess)
-                hang.indexes.push(i);
-        }
-        console.log(hang.indexes);
-        hang.replace(guess);
-    },
-
-    replace: function(guess) {
-        //take the indexes array (contains a list of the indexes with the letter guessed) and replace the emptyWord array with that letter for each index
-        var j;
-        for (j = 0; j < hang.indexes.length; j++) {
-            hang.emptyWord[hang.indexes[j]] = guess;
-        }
-        console.log(hang.emptyWord);
-        hang.indexes = [];
+        //hang.emptyWord = hang.emptyWord.join("");
+        console.log("emptyWord:" + hang.emptyWord);
+        console.log("currentWord:" + hang.currentWord);
+        return hang.emptyWord.join("");
     },
 
     checkLetter: function(guess) {
+        console.log("letter guessed:" + guess);
         if (hang.lettersUsed.includes(guess)) {
             alert("You already guessed " + guess + "!");
         }
@@ -48,12 +29,34 @@ var hang = {
         else if (hang.currentWord.indexOf(guess) == -1) {
             hang.lettersUsed = hang.lettersUsed + " " + guess;
             hang.guessesLeft--;
+            console.log("indexOf(guess):" + -1);
         }
 
         else {
             hang.lettersUsed = hang.lettersUsed + " " + guess;
             hang.getIndexes(guess);
         }
+    },
+
+    getIndexes: function(guess) {
+        for (var j = 0; j < hang.currentWord.length; j++) {
+            if (hang.currentWord[j] === guess)
+                hang.indexes.push(j);
+        }
+        console.log(hang.indexes);
+        hang.replace(guess);
+    },
+
+    replace: function(guess) {
+        console.log("indexes:" + hang.indexes);
+        //hang.indexes = String(hang.indexes);
+        for (var k = 0; k < hang.indexes.length; k++) {
+            hang.emptyWord[hang.indexes[k]] = guess;
+            console.log(hang.emptyWord);
+        }
+        console.log(hang.emptyWord);
+        hang.indexes = [];
+        return String(hang.emptyWord);
     },
 
     reset: function() {
@@ -69,10 +72,17 @@ var hang = {
 document.getElementById("game").innerHTML = hang.createWord();
 document.onkeyup = function(event) {
 
-
     var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
     hang.checkLetter(guess);
+
+    var html = hang.emptyWord.join("") + "<p>You chose: " + guess + "</p>" +
+        "<p>Letters guessed: " + hang.lettersUsed + "</p>" +
+        "<p>Guesses left: " + hang.guessesLeft + "</p>" +
+        "<p>Wins: " + hang.wins + "</p>" +
+        "<p>Losses: " + hang.losses + "</p>";
+
+    document.querySelector("#game").innerHTML = html;
 
     if (hang.guessesLeft === 0) {
         alert("Good attempt! The correct word was '" + hang.currentWord + "'!");
@@ -80,18 +90,12 @@ document.onkeyup = function(event) {
         hang.reset();
     }
 
-    else if (hang.emptyWord == hang.currentWord) {
-        alert("Great job! You win!");
+    else if (String(hang.emptyWord.join("")) === hang.currentWord) {
+        ////hang.currentWord = String(hang.currentWord);
+        //hang.emptyWord = hang.emptyWord.join(" ");
+        alert("Great job! The letter was: " + hang.currentWord + "!");
         hang.wins++;
         hang.reset();
     }
     else {}
-
-    var html = hang.emptyWord + "<p>You chose: " + guess + "</p>" +
-        "<p>Letters guessed: " + hang.lettersUsed + "</p>" +
-        "<p>Guesses left: " + hang.guessesLeft + "</p>" +
-        "<p>Wins: " + hang.wins + "</p>" +
-        "<p>Losses: " + hang.losses + "</p>";
-
-    document.querySelector("#game").innerHTML = html;
 };

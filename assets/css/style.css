@@ -1,0 +1,42 @@
+body {
+    background-color: #1D4289;
+}
+
+.container {
+    background-color: #1D4289;
+    margin: auto;
+    padding: 10px;
+    max-width: 90%;
+}
+
+#title {
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #C80F2E;
+    border-radius: 25px;
+}
+
+#wordDisplay {
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    background-color: #C80F2E;
+    color: black;
+    font-style: italic;
+    font-size: xx-large;
+    border-radius: 50px;
+}
+
+#game {
+    font-family: 'Ubuntu', sans-serif;
+    padding: 15px;
+    margin: 5px;
+    background-color: white;
+    color: #C80F2E;
+    text-align: center;
+    border-radius: 50px;
+}

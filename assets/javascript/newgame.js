@@ -1,4 +1,5 @@
 var hang = {
+    alphabet: "abcdefghijklmnopqrstuvwxyz",
     wordList: ["one", "two", "three", "four"],
     guessesLeft: 8,
     currentWord: [],
@@ -10,31 +11,34 @@ var hang = {
 
     createWord: function() {
         hang.currentWord = hang.wordList[Math.floor(Math.random() * hang.wordList.length)];
-        //hang.currentWord = String(hang.currentWord);
         for (var i = 0; i < hang.currentWord.length; i++) {
             hang.emptyWord[i] = "-";
         }
-        //hang.emptyWord = hang.emptyWord.join("");
         console.log("emptyWord:" + hang.emptyWord);
         console.log("currentWord:" + hang.currentWord);
         return hang.emptyWord.join("");
     },
 
     checkLetter: function(guess) {
-        console.log("letter guessed:" + guess);
-        if (hang.lettersUsed.includes(guess)) {
-            alert("You already guessed " + guess + "!");
-        }
+        if (hang.alphabet.includes(guess)) {
+            console.log("letter guessed:" + guess);
+            if (hang.lettersUsed.includes(guess)) {
+                alert("You already guessed " + guess + "!");
+            }
 
-        else if (hang.currentWord.indexOf(guess) == -1) {
-            hang.lettersUsed = hang.lettersUsed + " " + guess;
-            hang.guessesLeft--;
-            console.log("indexOf(guess):" + -1);
-        }
+            else if (hang.currentWord.indexOf(guess) == -1) {
+                hang.lettersUsed = hang.lettersUsed + " " + guess;
+                hang.guessesLeft--;
+                console.log("indexOf(guess):" + -1);
+            }
 
+            else {
+                hang.lettersUsed = hang.lettersUsed + " " + guess;
+                hang.getIndexes(guess);
+            }
+        }
         else {
-            hang.lettersUsed = hang.lettersUsed + " " + guess;
-            hang.getIndexes(guess);
+            alert("Not a letter! Try again.");
         }
     },
 
@@ -69,31 +73,31 @@ var hang = {
     }
 };
 
-document.getElementById("game").innerHTML = hang.createWord();
+document.getElementById("wordDisplay").innerHTML = hang.createWord();
+
 document.onkeyup = function(event) {
 
     var guess = String.fromCharCode(event.keyCode).toLowerCase();
 
     hang.checkLetter(guess);
 
-    var html = hang.emptyWord.join("") + "<p>You chose: " + guess + "</p>" +
+    var html = "<p>You chose: " + guess + "</p>" +
         "<p>Letters guessed: " + hang.lettersUsed + "</p>" +
         "<p>Guesses left: " + hang.guessesLeft + "</p>" +
         "<p>Wins: " + hang.wins + "</p>" +
         "<p>Losses: " + hang.losses + "</p>";
 
+    document.querySelector("#wordDisplay").innerHTML = hang.emptyWord.join("");
     document.querySelector("#game").innerHTML = html;
 
     if (hang.guessesLeft === 0) {
-        alert("Good attempt! The correct word was '" + hang.currentWord + "'!");
+        alert("Good attempt! The correct word was " + hang.currentWord + "'!");
         hang.losses++;
         hang.reset();
     }
 
     else if (String(hang.emptyWord.join("")) === hang.currentWord) {
-        ////hang.currentWord = String(hang.currentWord);
-        //hang.emptyWord = hang.emptyWord.join(" ");
-        alert("Great job! The letter was: " + hang.currentWord + "!");
+        alert("Great job! The letter was " + hang.currentWord + "!");
         hang.wins++;
         hang.reset();
     }

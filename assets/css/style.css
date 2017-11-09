@@ -4,7 +4,7 @@ body {
 
 .container {
     background-image: url("../images/woodGrain.jpg");
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
     padding: 10px;
@@ -13,13 +13,14 @@ body {
 }
 
 #title {
-    background-color: white;
+    background-color: black;
     padding: 15px;
     margin: 15px;
     text-align: center;
     font-family: 'IM Fell English SC', serif;
     color: #C80F2E;
     border-radius: 5px;
+    min-width: 175px;
 }
 
 #wordDisplay {
@@ -38,7 +39,7 @@ body {
     font-family: 'IM Fell English SC', serif;
     padding: 15px;
     margin: 5px;
-    background-color: white;
+    background-color: black;
     color: #C80F2E;
     text-align: center;
     border-radius: 5px;
